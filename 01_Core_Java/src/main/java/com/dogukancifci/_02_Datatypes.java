@@ -20,8 +20,8 @@ public class _02_Datatypes {
         char c3='b';
         boolean b3=25>3;
 
-        //8 tane primative type vardir.
-        // primitive type - Wrapper type
+        //8 tane primitive type vardir.
+        // primitive type
 
         int primitive=44;
         // vermezsiniz=> primitive=null;
