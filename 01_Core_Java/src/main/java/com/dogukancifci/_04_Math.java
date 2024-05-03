@@ -3,7 +3,7 @@ package com.dogukancifci;
 
 import java.util.Random;
 
-public class _4_Math {
+public class _04_Math {
 
     public static void main(String[] args) {
 

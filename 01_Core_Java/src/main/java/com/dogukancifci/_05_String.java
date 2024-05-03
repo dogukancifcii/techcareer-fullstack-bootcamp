@@ -2,7 +2,7 @@ package com.dogukancifci;
 
 
 
-public class _5_String {
+public class _05_String {
 
     public static void main(String[] args) {
 
