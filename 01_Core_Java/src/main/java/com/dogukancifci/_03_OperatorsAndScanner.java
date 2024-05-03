@@ -23,7 +23,7 @@ public class _03_OperatorsAndScanner {
         System.out.println("Adiniz: " + name);
         //nextLine for String
         //nextIn for int
-        
+
 
     }
 }
