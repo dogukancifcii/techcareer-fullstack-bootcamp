@@ -6,9 +6,9 @@ public class _01_WhatIsJava {
         //sout
         System.out.println("Merhabalar Nasilsiniz");
 
-        // zero
-        // null
-        // create
+        /// zero
+        /// null
+        /// create
 
 
     }
