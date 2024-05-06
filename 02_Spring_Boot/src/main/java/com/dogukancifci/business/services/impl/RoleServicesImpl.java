@@ -7,6 +7,7 @@ import com.dogukancifci.data.entity.RoleEntity;
 import com.dogukancifci.data.repository.IRoleRepository;
 import com.dogukancifci.exception.DogukanCifciException;
 import com.dogukancifci.exception.Resource404NotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -63,6 +64,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     //**** CRUD*****************************************************************//
     // CREATE (ROLE)
     @Override
+    @Transactional //Create,Update,Delete
     public RoleDto roleServiceCreate(RoleDto roleDto) {
         RoleEntity roleEntity1;
         // Dto => Entity çevirmek
@@ -121,6 +123,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     // UPDATE (ROLE)
     @Override
+    @Transactional //Create,Update,Delete
     public RoleDto roleServiceUpdateById(Long id, RoleDto roleDto) {
         // Find
         RoleDto roleDtoFind = roleServiceFindById(id);
@@ -139,6 +142,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     // DELETE (ROLE)
     @Override
+    @Transactional //Create,Update,Delete
     public RoleDto roleServiceDeleteById(Long id) {
         // Find
         RoleDto roleDtoFind = roleServiceFindById(id);

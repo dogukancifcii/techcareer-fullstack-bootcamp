@@ -1,6 +1,5 @@
 package com.dogukancifci.controller.api.impl;
 
-import com.dogukancifci.bean.ModelMapperBeanClass;
 import com.dogukancifci.business.dto.RoleDto;
 import com.dogukancifci.business.services.IRoleService;
 import com.dogukancifci.controller.api.IRoleApi;
@@ -8,7 +7,6 @@ import com.dogukancifci.error.ApiResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +26,6 @@ import java.util.List;
 public class RoleApiImpl implements IRoleApi<RoleDto> {
 
     // Injection
-    //@Qualifier("roleServicesImpl") 
     private final IRoleService iRoleService;
 
     // Error
@@ -63,6 +60,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
                     .build();
             return ResponseEntity.status(400).body(apiResultCreate);
         }
+        log.info("Role Api eklendi");
         return ResponseEntity.status(201).body(iRoleService.roleServiceCreate(roleDtoData));
     }
 
@@ -71,10 +69,11 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     @GetMapping("/list")
     @Override
     public ResponseEntity<List<RoleDto>> roleServiceList() {
+        log.info("Role Api Listelendi");
         return ResponseEntity.ok(iRoleService.roleServiceList());
     }
 
-    //FIND Role(Api)
+    // FIND Role(Api)
     // http://localhost:4444/role/api/v1.0.0/find
     // http://localhost:4444/role/api/v1.0.0/find/0
     // http://localhost:4444/role/api/v1.0.0/find/1
@@ -93,6 +92,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
                     .build();
             return ResponseEntity.status(404).body(apiResultFind);
         }
+        log.info("Role Api bulundu");
         return ResponseEntity.ok(iRoleService.roleServiceFindById(id));
     }
 
@@ -115,6 +115,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
                     .build();
             return ResponseEntity.status(404).body(apiResultFind);
         }
+        log.info("Role Api Güncellendi");
         return ResponseEntity.ok(iRoleService.roleServiceUpdateById(id,roleDto));
     }
 
@@ -126,6 +127,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     @DeleteMapping({"/delete","/delete/{id}"})
     public ResponseEntity<?> roleServiceDeleteById(@PathVariable(name="id",required = false) Long id) {
         RoleDto roleDto=(RoleDto)iRoleService.roleServiceDeleteById(id);
+        log.info("Role Api Silindi");
         return ResponseEntity.ok(iRoleService.roleServiceDeleteById(id));
     }
 
