@@ -5,6 +5,8 @@ import com.dogukancifci.business.dto.RoleDto;
 import com.dogukancifci.business.services.IRoleService;
 import com.dogukancifci.data.entity.RoleEntity;
 import com.dogukancifci.data.repository.IRoleRepository;
+import com.dogukancifci.exception.DogukanCifciException;
+import com.dogukancifci.exception.Resource404NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 //Lombok
 @RequiredArgsConstructor
@@ -51,7 +54,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     // Model Mapper
     @Override
     public RoleDto entityToDto(RoleEntity roleEntity) {
-        return modelMapperBeanClass.modelMapperMethod().map(roleEntity,RoleDto.class);
+        return modelMapperBeanClass.modelMapperMethod().map(roleEntity, RoleDto.class);
     }
 
     @Override
@@ -66,10 +69,10 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     public RoleDto roleServiceCreate(RoleDto roleDto) {
         RoleEntity roleEntity1;
         // Dto => Entity çevirmek
-        roleEntity1=dtoToEntity(roleDto);
+        roleEntity1 = dtoToEntity(roleDto);
         roleEntity1.setRoleName(roleEntity1.getRoleName().toUpperCase());
         // Kaydetmek
-        RoleEntity roleEntity2=iRoleRepository.save(roleEntity1);
+        RoleEntity roleEntity2 = iRoleRepository.save(roleEntity1);
         // ID ve Date Dto üzerinde Set yapıyorum
         roleDto.setRoleId(roleEntity2.getRoleId());
         roleDto.setSystemCreatedDate(roleEntity2.getSystemCreatedDate());
@@ -80,24 +83,44 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     @Override
     public List<RoleDto> roleServiceList(RoleDto roleDto) {
         //Entity List
-        List<RoleEntity> roleEntityList1=iRoleRepository.findAll();
+        List<RoleEntity> roleEntityList1 = iRoleRepository.findAll();
 
         // Dto List
-        List<RoleDto> roleDtoList=new ArrayList<>();
+        List<RoleDto> roleDtoList = new ArrayList<>();
 
         // Entity To Dto List
-        for(RoleEntity tempEntity:roleEntityList1){
-            RoleDto roleDto1=entityToDto(tempEntity);
+        for (RoleEntity tempEntity : roleEntityList1) {
+            RoleDto roleDto1 = entityToDto(tempEntity);
             roleDtoList.add(roleDto1);
         }
         return roleDtoList;
-    }
+    }//end List
 
     // Find
     @Override
     public RoleDto roleServiceFindById(Long id) {
-        return null;
-    }
+        //1. YOL
+        /*
+
+        Optional<RoleEntity> optionalRoleEntityFIndById = iRoleRepository.findById(id);
+        //isPresent: Entity varsa
+        if(optionalRoleEntityFIndById.isPresent()){
+            return entityToDto(optionalRoleEntityFIndById.get());
+        }
+        */
+
+        //2. YOL
+        Boolean booleanRoleEntityFindById = iRoleRepository.findById(id).isPresent();
+        RoleEntity roleEntity = null;
+        if (id != null) {
+            roleEntity = iRoleRepository.findById(id).orElseThrow(
+                    () -> new Resource404NotFoundException(id + "nolu ID Bulunamadi")
+            );
+        } else if (id == null) {
+            throw new DogukanCifciException("Roles Dto id bos deger geldi");
+        }
+        return entityToDto(roleEntity);
+    }//end Find
 
     // Update
     @Override
