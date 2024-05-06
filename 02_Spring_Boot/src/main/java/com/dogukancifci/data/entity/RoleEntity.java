@@ -1,5 +1,6 @@
 package com.dogukancifci.data.entity;
 
+import com.dogukancifci.audit.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
@@ -19,7 +20,7 @@ import java.util.Date;
 @Entity(name = "Roles")
 @Table(name = "roles")
 //Role(M) Register(N)
-public class RoleEntity implements Serializable {
+public class RoleEntity  extends AuditingAwareBaseEntity implements Serializable {
 
     //SERILESTIRME
     public static final Long serialVersionUID = 1L;

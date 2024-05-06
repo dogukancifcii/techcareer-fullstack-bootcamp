@@ -1,6 +1,7 @@
 package com.dogukancifci.business.dto;
 
 import com.dogukancifci.annotation.AnnotationUniqueRoleName;
+import com.dogukancifci.audit.AuditingAwareBaseDto;
 import com.dogukancifci.role.ERole;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -18,7 +19,7 @@ import java.util.Date;
 //@SneakyThrows
 
 //RoleDto
-public class RoleDto implements Serializable {
+public class RoleDto extends AuditingAwareBaseDto implements Serializable {
 
     //SERILESTIRME
     public static final Long serialVersionUID = 1L;
