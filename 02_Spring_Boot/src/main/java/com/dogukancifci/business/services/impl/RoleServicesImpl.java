@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 //Lombok
 @RequiredArgsConstructor
@@ -22,16 +21,14 @@ import java.util.Optional;
 
 // Service: Asıl İş Yükünü sırtlayan
 @Service
-@Component("roleServicesImpl")  //Component => Spring'in bir parcasisin
+@Component("roleServicesImpl") // @Component => Spring'in bir parcasısın
 public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
-
 
     // Injection IRoleRepository (1.YOL => @Autowired)
     /*
     @Autowired
     private IRoleRepository iRoleRepository;
     */
-
 
     // Injection IRoleRepository (2.YOL => Constructor Injection)
     /*
@@ -81,7 +78,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     // LIST (ROLE)
     @Override
-    public List<RoleDto> roleServiceList(RoleDto roleDto) {
+    public List<RoleDto> roleServiceList() {
         //Entity List
         List<RoleEntity> roleEntityList1 = iRoleRepository.findAll();
 
@@ -155,4 +152,5 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
         }
         // return null;
     }
-}// End RoleServicesImpl
+
+} //end RoleServicesImploleServicesImpl
