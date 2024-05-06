@@ -1,5 +1,6 @@
 package com.dogukancifci.business.dto;
 
+import com.dogukancifci.annotation.AnnotationUniqueRoleName;
 import com.dogukancifci.role.ERole;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -30,6 +31,7 @@ public class RoleDto implements Serializable {
     @NotEmpty(message = "{role.name.validation.constraints.NotNull.message}")
     @Builder.Default
     //Annotation kullanmalisin cunku database ayni role adinda olmamasi gerekiyor(unique)
+    @AnnotationUniqueRoleName
     private String roleName= ERole.USER.toString();
 
     //System Created Date
