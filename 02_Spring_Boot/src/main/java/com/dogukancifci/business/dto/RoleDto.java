@@ -30,9 +30,9 @@ public class RoleDto extends AuditingAwareBaseDto implements Serializable {
     //Role Name
     //Validation oto control
     @NotEmpty(message = "{role.name.validation.constraints.NotNull.message}")
-    @Builder.Default
     //Annotation kullanmalisin cunku database ayni role adinda olmamasi gerekiyor(unique)
     @AnnotationUniqueRoleName
+    @Builder.Default
     private String roleName= ERole.USER.toString();
 
     //System Created Date
