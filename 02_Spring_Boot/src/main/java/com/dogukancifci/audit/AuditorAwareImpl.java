@@ -32,7 +32,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
             log.error("Sistemde Kullanı yoktur");
             return Optional.empty();
         }*/
-        // Eğer sistemde bir kullanıcı giriş  yapmamışsa default olarak HamitM. dönder
+        // Eğer sistemde bir kullanıcı giriş  yapmamışsa default olarak DogukanC. dönder
         //return Optional.ofNullable(authentication!=null? authentication.getName() : null)
         return Optional.of("DogukanC.");
     }

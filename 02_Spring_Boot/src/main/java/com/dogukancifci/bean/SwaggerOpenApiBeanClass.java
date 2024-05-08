@@ -35,7 +35,7 @@ public class SwaggerOpenApiBeanClass {
                         .contact(new Contact()
                                 .name("Dogukan")
                                 .url("www.google.com.tr")
-                                .email("dogukancifcii5@gmail.com"))
+                                .email("deneme@gmail.com"))
                         .termsOfService(" Software INC.")
                         .license(
                                 new License()

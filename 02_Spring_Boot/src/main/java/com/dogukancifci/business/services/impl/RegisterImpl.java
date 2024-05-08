@@ -63,7 +63,7 @@ public class RegisterImpl implements IRegisterServices<RegisterDto, RegisterEnti
             registerDto.setRegisterName("name");
             registerDto.setRegisterSurname("surname");
             registerDto.setRegisterPassword(passwordEncoderBeanClass.passwordEncoderMethod().encode("1234"));
-            registerDto.setRegisterEmail("hamitmizrak@gmail.com");
+            registerDto.setRegisterEmail("deneme@gmail.com");
             registerDto.setIsAccountNonLocked(false); //mail ile aktifleşitreceğim.
             registerDto.setIsEnabled(true);
             registerDto.setIsAccountNonExpired(true);

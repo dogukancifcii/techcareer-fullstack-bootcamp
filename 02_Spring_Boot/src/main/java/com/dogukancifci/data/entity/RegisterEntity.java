@@ -64,7 +64,7 @@ public class RegisterEntity extends AuditingAwareBaseEntity implements Serializa
             updatable = false,
             insertable = true,
             length = 60,
-            columnDefinition = "varchar(255) default 'hamitmizrak@gmail.com'")
+            columnDefinition = "varchar(255) default 'deneme@gmail.com'")
     private String registerEmail;
 
     // Password
