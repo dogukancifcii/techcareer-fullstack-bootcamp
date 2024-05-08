@@ -23,6 +23,9 @@ import java.util.Date;
 @Log4j2
 @Builder
 //@SneakyThrows
+
+//NOT: Validation islemlerinde DTO tarafinda yazalim
+//NOT: Eger kullanici bosluk biraktiysa trim() metodunu kullanin
 public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
     // Serilestirme
@@ -40,7 +43,7 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
     // Name
     @NotEmpty(message = "{register.name.validation.constraints.NotNull.message}")
-    private String name;
+    private String registerName;
 
     // Surname
     @NotEmpty(message = "{register.surname.validation.constraints.NotNull.message}")
