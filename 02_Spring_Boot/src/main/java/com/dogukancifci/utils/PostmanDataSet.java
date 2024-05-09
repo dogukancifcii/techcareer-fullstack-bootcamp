@@ -27,5 +27,18 @@ public class PostmanDataSet {
     DELETE
     http://localhost:4444/role/api/v1.0.0/delete/1
 
+
+     EMAIL BASIC
+    {
+          "emailTo": "deneme@gmail.com",
+          "emailFrom": "deneme@gmail.com",
+          "emailSubject": "Konu",
+          "emailText": "içerik",
+          "emailCc": "cc@gmail.com",
+          "emailBcc": "bcc@gmail.com",
+          "image": "resim.png",
+          "url": "url"
+     }
+     
     */
 }
