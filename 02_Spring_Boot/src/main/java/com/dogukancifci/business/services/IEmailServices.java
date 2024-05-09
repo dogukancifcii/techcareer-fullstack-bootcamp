@@ -3,6 +3,8 @@ package com.dogukancifci.business.services;
 // D: Dto
 // E: Entity
 
+import com.dogukancifci.business.dto.EmailDto;
+
 // Email
 public interface IEmailServices<D, E> {
 
@@ -15,6 +17,11 @@ public interface IEmailServices<D, E> {
     // Maili Öncelikle Database kaydedelim.
     public D mailDatabase(D d);
 
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //**** EMAIL DATABASE *****************************************************************//
+    // Email Database
+    EmailDto mailDatabase(EmailDto emailDto);
 
     ////////////////////////////////////////////
     // EMAIL BASIC SEND (text)
