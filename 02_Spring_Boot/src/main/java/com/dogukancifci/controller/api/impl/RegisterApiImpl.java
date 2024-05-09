@@ -2,8 +2,10 @@ package com.dogukancifci.controller.api.impl;
 
 import com.dogukancifci.business.dto.RegisterDto;
 import com.dogukancifci.business.services.IRegisterServices;
+import com.dogukancifci.business.services.impl.RegisterServicesImpl;
 import com.dogukancifci.controller.api.IRegisterApi;
 import com.dogukancifci.error.ApiResult;
+import com.dogukancifci.tokenmail.ForRegisterTokenEmailConfirmationEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // Lombok
 @RequiredArgsConstructor
@@ -29,6 +32,10 @@ public class RegisterApiImpl implements IRegisterApi<RegisterDto> {
 
     // Error
     private ApiResult apiResult;
+
+    // Email ***********************************************
+    // Register Services Impl
+    private final RegisterServicesImpl registerServicesImpl;
 
     /////////////////////////////////////////////////////////////
 
@@ -100,6 +107,39 @@ public class RegisterApiImpl implements IRegisterApi<RegisterDto> {
     @DeleteMapping({"/delete","/delete/{id}"})
     public ResponseEntity<?> registerApiDeleteById(@PathVariable(name="id",required = false) Long id) {
         return ResponseEntity.ok(iRegisterServices.registerServiceDeleteById(id));
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // EMAIL CONFIRMATION
+    // EMAIL CONFIRMATION
+    //http://localhost:4444/register/api/v1/confirm?token=ca478481-5f7a-406b-aaa4-2012ebe1afb4
+    @GetMapping("/confirm")
+    public ResponseEntity<String> emailTokenConfirmation(@RequestParam("token") String token) {
+        Optional<ForRegisterTokenEmailConfirmationEntity> tokenConfirmationEntity = registerServicesImpl.findTokenConfirmation(token);
+        tokenConfirmationEntity.ifPresent(registerServicesImpl::emailTokenConfirmation);
+        String html="<!doctype html>\n" +
+                "<html lang=\"en\">\n" +
+                "\n" +
+                "<head>\n" +
+                "  <title>Register</title>\n" +
+                "  <meta charset=\"utf-8\">\n" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
+                "  <style>\n" +
+                "    body{\n" +
+                "        background-color: black;\n" +
+                "        color:white;\n" +
+                "    }\n" +
+                "  </style>\n" +
+                "</head>\n" +
+                "\n" +
+                "<body>\n" +
+                "\n" +
+                "    <p style='padding:4rem;'>Üyeliğiniz Aktif olunmuştur.  <a href='http://localhost:3000'>Ana sayfa için tıklayınız </a></p>\n" +
+                "  \n" +
+                "</body>\n" +
+                "</html>";
+        return ResponseEntity.ok(html);
     }
 
 }// end RegisterApiImpl
