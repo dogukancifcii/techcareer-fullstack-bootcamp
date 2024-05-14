@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import BlogRouter from "./BlogRouter";
-
+// Dil Seçeneği (Ekledim)
+import "./internationalization/i18nlanguage";
 // BrowserRouter => http://localjhost:3000/
 // HashRouter    => http://localjhost:3000/#
 import { BrowserRouter } from "react-router-dom";
