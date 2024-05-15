@@ -1,20 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+
+// ROUTER
 import BlogRouter from "./BlogRouter";
-// Dil Seçeneği (Ekledim)
+
+// dark mode
+import "./index.css";
+
+// Dil Secenegi
 import "./internationalization/i18nlanguage";
-// BrowserRouter => http://localjhost:3000/
-// HashRouter    => http://localjhost:3000/#
+
+// ROUTER
+// BrowserRouter  http://localhost:3000/
+// HashRouter     http://localhost:3000/#/
 import { BrowserRouter } from "react-router-dom";
 
+// ROOT - DOM
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// RENDER
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <App />  */}
       <BlogRouter />
+      {/* <App /> */}
     </BrowserRouter>
   </React.StrictMode>
 );
